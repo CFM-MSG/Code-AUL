@@ -1,0 +1,64 @@
+image_root: '/data/ICFG-PEDES/'
+train_file:  ['data/finetune/icfg_train.json']
+test_file: 'data/finetune/icfg_test.json'
+
+
+## Vision Encoder
+vision_config: 'configs/config_swinB_384.json'
+image_res: 384
+patch_size: 32
+h: 384
+w: 128
+
+
+## Text Encoder
+text_config: 'configs/config_bert.json'
+text_encoder: 'models--bert-base-uncased'
+
+
+## Training
+batch_size_train: 32
+batch_size_test: 150
+batch_size_test_text: 750
+
+max_tokens: 56
+max_words: 56
+
+embed_dim: 256
+temp: 0.07
+k_test: 128
+
+
+## mlm loss
+mlm: True
+mask_prob: 0.25
+max_masks: 10
+skipgram_prb: 0.2
+skipgram_size: 3
+mask_whole_word: True
+
+lu: True
+mim: True
+unc: True
+sdm: False
+id: False
+match: True
+
+
+apply_mlm: True
+weak_supervision: True
+
+## Other Settings
+optimizer: {opt: adamW, lr: 1e-4, weight_decay: 0.01, lr_mult: 2}
+schedular: {sched: step, lr: 1e-4, epochs: 30, num_warmup_steps: 0.1}
+
+icfg_rstp: True
+
+lr_2: True
+load_params: False
+load_pretrained: True
+
+erasing_p: 0.6
+eda: True
+eda_p: 1
+LabelSmooth: 0

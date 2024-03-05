@@ -1,0 +1,66 @@
+image_root: '/data/CUHK-PEDES/'
+test_file: 'data/finetune/cuhk_test.json'
+val_file: 'data/finetune/cuhk_val.json'
+train_file:  ['data/finetune/cuhk_train.json']
+
+
+## Vision Encoder
+vision_config: 'configs/config_swinB_384.json'
+image_res: 384
+patch_size: 32
+h: 384
+w: 128
+
+
+## Text Encoder
+text_config: 'configs/config_bert.json'
+text_encoder: 'models--bert-base-uncased'
+
+
+## Training
+batch_size_train: 32
+batch_size_test: 150
+batch_size_test_text: 750
+
+max_tokens: 56
+max_words: 56
+
+embed_dim: 256
+temp: 0.07
+k_test: 128
+
+
+## mlm loss
+mlm: True
+mask_prob: 0.25
+max_masks: 10
+skipgram_prb: 0.2
+skipgram_size: 3
+mask_whole_word: True
+
+
+lu: True
+mim: True
+unc: True
+sdm: False
+id: False
+match: True
+
+
+apply_mlm: True
+weak_supervision: True
+
+## Other Settings
+optimizer: {opt: adamW, lr: 5e-5, weight_decay: 0.01, lr_mult: 2}
+schedular: {sched: step, lr: 5e-5, epochs: 20, num_warmup_steps: 0.1}
+
+icfg_rstp: False
+
+lr_2: True
+load_params: False
+load_pretrained: True
+
+eda: True
+eda_p: 1
+erasing_p: 0.6
+LabelSmooth: 0
